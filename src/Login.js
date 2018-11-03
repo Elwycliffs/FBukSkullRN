@@ -1,6 +1,15 @@
 import React, { Component } from "react";
-import { View, Text, TextInput, Image, StyleSheet, Button } from "react-native";
-import FireBase from "./FireBase";
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  StyleSheet,
+  Button,
+  Alert,
+  Platform
+} from "react-native";
+import FireBase from "./auth/FireBase";
 
 // Style
 const backColor = "#3a5998";
@@ -36,55 +45,56 @@ class Login extends Component {
     let logoMar = 120;
     let rlMar = 20;
     let tbMar = 10;
-    let bColor = "white";
+    let brdColor = "gray";
     let inputH = 80;
     let inputR = 10;
-    let bWidth = 0.5;
+    let brdWidth = 0.5;
 
     return (
       <View style={styles.view}>
         <View
           style={{
-            flex: { flex },
-            flexDirection: { flexD },
-            alignItems: { center }
+            flex: 1,
+            flexDirection: "column",
+            alignItems: "center"
           }}
         >
           {/** Logo container */}
           <Image
-            source={require("../../assets/Logo.png")}
+            source={require("../assets/Logo.png")}
             style={{
-              height: { logoD },
-              width: { logoD },
-              marginTop: { logoMar }
+              height: 40,
+              width: 40,
+              marginTop: 120
             }}
           />
         </View>
         <View
           style={{
-            flex: { flex },
-            flexDirection: { flexD },
-            justifyContent: { center },
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "center",
             //alignItems: {center},
-            marginLeft: { rlMar },
-            marginRight: { tbMar }
+            marginLeft: 20,
+            marginRight: 20
           }}
         >
           {/** TextInput container */}
           <View
             style={{
-              flexDirection: { flexD },
-              backgroundColor: { foreColor },
-              marginBottom: tbMar,
-              height: inputH,
-              borderRadius: inputR
+              flexDirection: "column",
+              backgroundColor: "white",
+              marginBottom: 10,
+              height: 80,
+              borderRadius: 2
             }}
           >
             <TextInput
               style={{
-                flex: { flex },
-                flexDirection: { flexD },
-                marginRight: { rlMar }
+                flex: 1,
+                flexDirection: "column",
+                marginRight: 10,
+                marginLeft: 10
               }}
               //caretHidden
               underlineColorAndroid="transparent"
@@ -94,12 +104,12 @@ class Login extends Component {
             />
             <View
               style={{
-                borderBottomColor: { bColor },
-                borderBottomWidth: bWidth
+                borderBottomColor: "gray",
+                borderBottomWidth: 0.5
               }}
             />
             <TextInput
-              style={{ flex: { flex }, marginLeft: rlMar, marginRight: rlMar }}
+              style={{ flex: 1, marginLeft: 10, marginRight: 10 }}
               //caretHidden
               underlineColorAndroid="transparent"
               textContentType="password"
@@ -108,19 +118,25 @@ class Login extends Component {
               placeholderTextColor="lightgray"
             />
           </View>
-          <Button title="Login" color="#4e69a2" />
+          <Button
+            title="Login"
+            color={Platform.OS == "android" ? "#4e69a2" : "white"}
+            onPress={() => {
+              Alert.alert("Send it!!!");
+            }}
+          />
         </View>
         <View
           style={{
-            flex: { flex },
-            flexDirection: { flexD },
-            justifyContent: { center },
-            alignItems: { center }
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center"
           }}
         >
           {/** Useful Links container */}
           <Text style={[styles.links]}>Sign up for Facebook</Text>
-          <Text style={[styles.links, { marginTop: tbMar }]}>Need help?</Text>
+          <Text style={[styles.links, { marginTop: 10 }]}>Need help?</Text>
         </View>
       </View>
     );

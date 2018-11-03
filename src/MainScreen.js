@@ -38,16 +38,13 @@ const AppTabNav = createMaterialTopTabNavigator(
     tabBarPosition: "top",
     tabBarOptions: {
       style: {
-        ...Platform.select({
-          android: {
-            backgroundColor: "white"
-          }
-        })
+        backgroundColor: "white"
       },
       activeTintColor: "#000",
       inactiveTintColor: "#d9dbe0",
       showLabel: false,
-      showIcon: true
+      showIcon: true,
+      iconStyle: { height: 30, width: 30 }
     }
   }
 );

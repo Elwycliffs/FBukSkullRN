@@ -3,7 +3,8 @@ import { createStackNavigator } from "react-navigation";
 import MainScreen from "./src/MainScreen";
 import CsHeader from "./src/main/header";
 import Splash from "./src/Splash";
-import Auth from "./src/Auth";
+import Login from "./src/Login";
+import Signup from "./src/Signup";
 
 // Stack Navigator - Returns a React Component
 const AppStack = createStackNavigator(
@@ -19,8 +20,8 @@ const AppStack = createStackNavigator(
       screen: MainScreen,
       navigationOptions: { header: props => <CsHeader {...props} /> }
     },
-    Auth: {
-      screen: Auth,
+    Login: {
+      screen: Login,
       navigationOptions: {
         header: null,
         headerLeft: null
@@ -28,7 +29,7 @@ const AppStack = createStackNavigator(
     }
   },
   {
-    initialRouteName: "Auth"
+    initialRouteName: "Main"
   }
 );
 
