@@ -33,6 +33,9 @@ class Home extends React.Component {
     return (
       <Container style={styles.container}>
         <Content>
+          {/** Facebook Stories Container goes here */}
+
+          {/** Facebook Posts go here */}
           <Card
             user="Wycliff"
             thumbnail={require("../../assets/Me.jpg")}

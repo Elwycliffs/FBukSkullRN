@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { Icon } from "native-base";
 import { createMaterialTopTabNavigator } from "react-navigation";
 import Home from "./main/Home";
-import Likes from "./main/Likes";
+import Notifications from "./main/Notifications";
 import Media from "./main/Media";
 import Profile from "./main/Profile";
-import Search from "./main/Search";
-import { Platform } from "react-native";
+import Groups from "./main/Groups";
+//import Settings from "./main/Settings";
 
 // Themes and Colors
 //const background = "#fff";
@@ -27,10 +26,11 @@ const iconPadding = 20;
 const AppTabNav = createMaterialTopTabNavigator(
   {
     HomeTab: { screen: Home },
-    SearchTab: { screen: Search },
+    GroupTab: { screen: Groups },
     MediaTab: { screen: Media },
-    LikesTab: { screen: Likes },
-    ProfileTab: { screen: Profile }
+    ProfileTab: { screen: Profile },
+    NotificationsTab: { screen: Notifications }
+    //SettingsTab:{screen: Settings}
   },
   {
     animationEnabled: true,

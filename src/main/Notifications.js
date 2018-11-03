@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class Search extends Component {
+class Likes extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -26,17 +26,17 @@ class Search extends Component {
 
   static navigationOptions = {
     tabBarIcon: ({ tintcolor }) => (
-      <Icon name="ios-search" style={{ color: tintcolor }} />
+      <Icon name="ios-notifications-outline" style={{ color: tintcolor }} />
     )
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Search Tab </Text>
+        <Text>Notifications Tab </Text>
       </View>
     );
   }
 }
 
-export default Search;
+export default Likes;
