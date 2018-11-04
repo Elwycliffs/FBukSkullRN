@@ -135,7 +135,7 @@ class Login extends Component {
         >
           {/** Useful Links container */}
           <Text style={[styles.links]}>Sign up for Facebook</Text>
-          <Text style={[styles.links, { marginTop: 10 }]}>Need help?</Text>
+          <Text style={[styles.links, { marginTop: 20 }]}>Need help?</Text>
         </View>
       </View>
     );

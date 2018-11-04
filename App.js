@@ -26,10 +26,17 @@ const AppStack = createStackNavigator(
         header: null,
         headerLeft: null
       }
+    },
+    Registration: {
+      screen: Signup,
+      navigationOptions: {
+        header: null,
+        headerLeft: null
+      }
     }
   },
   {
-    initialRouteName: "Landing"
+    initialRouteName: "Registration"
   }
 );
 

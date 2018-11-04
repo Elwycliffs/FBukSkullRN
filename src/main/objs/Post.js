@@ -38,7 +38,6 @@ class Post extends Component {
     let heartOutline = this.state.isLiked ? "ios-heart" : "ios-heart-outline";
 
     // Defaults
-    const thumbnailDim = 40;
     const userDim = 16;
     const locationDim = 12;
     const weight = "900";
@@ -47,10 +46,7 @@ class Post extends Component {
       <Card>
         <CardItem>
           <Left>
-            <Thumbnail
-              source={thumbnail}
-              style={{ height: thumbnailDim, width: thumbnailDim }}
-            />
+            <Thumbnail source={thumbnail} circular small />
             <Body>
               <Text style={{ fontWeight: weight, fontSize: userDim }}>
                 {user}
