@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Platform } from "react-native";
 import {
   Card,
   CardItem,
@@ -28,22 +28,36 @@ class Post extends Component {
   }
 
   render() {
+    // References
     let user = this.props.user;
     let thumbnail = this.props.thumbnail;
-    let note = this.props.note;
+    let location = this.props.note;
     let image = this.props.image;
     let likes = this.props.likes;
     let post = this.props.post;
     let heartOutline = this.state.isLiked ? "ios-heart" : "ios-heart-outline";
 
+    // Defaults
+    const thumbnailDim = 40;
+    const userDim = 16;
+    const locationDim = 12;
+    const weight = "900";
+
     return (
       <Card>
         <CardItem>
           <Left>
-            <Thumbnail source={thumbnail} />
+            <Thumbnail
+              source={thumbnail}
+              style={{ height: thumbnailDim, width: thumbnailDim }}
+            />
             <Body>
-              <Text>{user}</Text>
-              <Text note>{note}</Text>
+              <Text style={{ fontWeight: weight, fontSize: userDim }}>
+                {user}
+              </Text>
+              <Text style={{ fontSize: locationDim }} note>
+                {location}
+              </Text>
             </Body>
           </Left>
         </CardItem>
@@ -66,7 +80,7 @@ class Post extends Component {
             </Button>
           </Left>
         </CardItem>
-        <CardItem style={{ height: 20 }}>
+        <CardItem style={{ height: 50 }}>
           <Text>{likes}</Text>
         </CardItem>
         <CardItem>
@@ -80,6 +94,7 @@ class Post extends Component {
       </Card>
     );
   }
-}1
+}
+1;
 
 export default Post;
