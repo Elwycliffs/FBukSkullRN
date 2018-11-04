@@ -3,7 +3,8 @@ import { createStackNavigator } from "react-navigation";
 import Landing from "./src/Landing";
 import CsHeader from "./src/main/header";
 import Splash from "./src/Splash";
-import Auth from "./src/Auth";
+import Login from "./src/Login";
+import Signup from "./src/Signup";
 
 // Stack Navigator - Returns a React Component
 const AppStack = createStackNavigator(
@@ -19,8 +20,8 @@ const AppStack = createStackNavigator(
       screen: Landing,
       navigationOptions: { header: props => <CsHeader {...props} /> }
     },
-    Auth: {
-      screen: Auth,
+    Login: {
+      screen: Login,
       navigationOptions: {
         header: null,
         headerLeft: null

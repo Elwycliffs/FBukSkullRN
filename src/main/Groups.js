@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class Likes extends Component {
+class Groups extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -26,17 +26,17 @@ class Likes extends Component {
 
   static navigationOptions = {
     tabBarIcon: ({ tintcolor }) => (
-      <Icon name="ios-heart" style={{ color: tintcolor }} />
+      <Icon name="ios-bonfire" style={{ color: tintcolor }} />
     )
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Likes Tab </Text>
+        <Text>Groups Tab </Text>
       </View>
     );
   }
 }
 
-export default Likes;
+export default Groups;

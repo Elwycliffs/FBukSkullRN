@@ -1,6 +1,14 @@
 import React, { Component } from "react";
-import { View, Text, TextInput, Image, StyleSheet, Button } from "react-native";
-import FireBase from "./FireBase";
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  StyleSheet,
+  Button,
+  Platform
+} from "react-native";
+import FireBase from "./auth/FireBase";
 
 // Style
 const backColor = "#3a5998";
@@ -52,7 +60,7 @@ class Login extends Component {
         >
           {/** Logo container */}
           <Image
-            source={require("../../assets/Logo.png")}
+            source={require("../assets/Logo.png")}
             style={{
               height: logoD,
               width: logoD,
@@ -111,7 +119,7 @@ class Login extends Component {
           </View>
           <Button
             title="Login"
-            color="#4e69a2"
+            color={Platform.OS == "android" ? "#4e69a2" : "white"}
             onPress={() => {
               console.log("Auth");
             }}
@@ -127,7 +135,7 @@ class Login extends Component {
         >
           {/** Useful Links container */}
           <Text style={[styles.links]}>Sign up for Facebook</Text>
-          <Text style={[styles.links, { marginTop: tbMar }]}>Need help?</Text>
+          <Text style={[styles.links, { marginTop: 10 }]}>Need help?</Text>
         </View>
       </View>
     );
