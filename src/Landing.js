@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Icon } from "native-base";
 import { createMaterialTopTabNavigator } from "react-navigation";
 import Home from "./main/Home";
 import Likes from "./main/Likes";

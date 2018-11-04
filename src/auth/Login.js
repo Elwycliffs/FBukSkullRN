@@ -34,47 +34,47 @@ class Login extends Component {
     let center = "center";
     let logoD = 40;
     let logoMar = 120;
-    let rlMar = 20;
+    let rlMar = 10;
     let tbMar = 10;
-    let bColor = "white";
+    let bColor = "lightgray";
     let inputH = 80;
-    let inputR = 10;
+    let inputR = 4;
     let bWidth = 0.5;
 
     return (
       <View style={styles.view}>
         <View
           style={{
-            flex: { flex },
-            flexDirection: { flexD },
-            alignItems: { center }
+            flex: flex,
+            flexDirection: flexD,
+            alignItems: center
           }}
         >
           {/** Logo container */}
           <Image
             source={require("../../assets/Logo.png")}
             style={{
-              height: { logoD },
-              width: { logoD },
-              marginTop: { logoMar }
+              height: logoD,
+              width: logoD,
+              marginTop: logoMar
             }}
           />
         </View>
         <View
           style={{
-            flex: { flex },
-            flexDirection: { flexD },
-            justifyContent: { center },
+            flex: flex,
+            flexDirection: flexD,
+            justifyContent: center,
             //alignItems: {center},
-            marginLeft: { rlMar },
-            marginRight: { tbMar }
+            marginLeft: rlMar,
+            marginRight: tbMar
           }}
         >
           {/** TextInput container */}
           <View
             style={{
-              flexDirection: { flexD },
-              backgroundColor: { foreColor },
+              flexDirection: flexD,
+              backgroundColor: foreColor,
               marginBottom: tbMar,
               height: inputH,
               borderRadius: inputR
@@ -82,9 +82,10 @@ class Login extends Component {
           >
             <TextInput
               style={{
-                flex: { flex },
-                flexDirection: { flexD },
-                marginRight: { rlMar }
+                flex: flex,
+                flexDirection: flexD,
+                marginRight: rlMar,
+                marginLeft: rlMar
               }}
               //caretHidden
               underlineColorAndroid="transparent"
@@ -94,12 +95,12 @@ class Login extends Component {
             />
             <View
               style={{
-                borderBottomColor: { bColor },
+                borderBottomColor: bColor,
                 borderBottomWidth: bWidth
               }}
             />
             <TextInput
-              style={{ flex: { flex }, marginLeft: rlMar, marginRight: rlMar }}
+              style={{ flex: flex, marginLeft: rlMar, marginRight: rlMar }}
               //caretHidden
               underlineColorAndroid="transparent"
               textContentType="password"
@@ -108,14 +109,20 @@ class Login extends Component {
               placeholderTextColor="lightgray"
             />
           </View>
-          <Button title="Login" color="#4e69a2" />
+          <Button
+            title="Login"
+            color="#4e69a2"
+            onPress={() => {
+              console.log("Auth");
+            }}
+          />
         </View>
         <View
           style={{
-            flex: { flex },
-            flexDirection: { flexD },
-            justifyContent: { center },
-            alignItems: { center }
+            flex: flex,
+            flexDirection: flexD,
+            justifyContent: center,
+            alignItems: center
           }}
         >
           {/** Useful Links container */}

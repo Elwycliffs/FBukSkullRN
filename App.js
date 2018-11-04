@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "react-navigation";
-import MainScreen from "./src/MainScreen";
+import Landing from "./src/Landing";
 import CsHeader from "./src/main/header";
 import Splash from "./src/Splash";
 import Auth from "./src/Auth";
@@ -15,8 +15,8 @@ const AppStack = createStackNavigator(
         headerLeft: null
       }
     },
-    Main: {
-      screen: MainScreen,
+    Landing: {
+      screen: Landing,
       navigationOptions: { header: props => <CsHeader {...props} /> }
     },
     Auth: {
@@ -28,7 +28,7 @@ const AppStack = createStackNavigator(
     }
   },
   {
-    initialRouteName: "Auth"
+    initialRouteName: "Landing"
   }
 );
 
