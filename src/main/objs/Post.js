@@ -91,6 +91,5 @@ class Post extends Component {
     );
   }
 }
-1;
 
 export default Post;

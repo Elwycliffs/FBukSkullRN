@@ -1,46 +1,23 @@
-import React from "react";
-import { createStackNavigator } from "react-navigation";
-import Landing from "./src/Landing";
-import CsHeader from "./src/main/header";
+import { createSwitchNavigator } from "react-navigation";
+import Stack from "./src/Stack";
 import Splash from "./src/Splash";
 import Login from "./src/Login";
 import Signup from "./src/Signup";
+import GStarted from "./src/GStarted";
 
-// Stack Navigator - Returns a React Component
-const AppStack = createStackNavigator(
+// Switch Navigator
+const App = createSwitchNavigator(
   {
-    Splash: {
-      screen: Splash,
-      navigationOptions: {
-        header: null,
-        headerLeft: null
-      }
-    },
-    Landing: {
-      screen: Landing,
-      navigationOptions: { header: props => <CsHeader {...props} /> }
-    },
-    Login: {
-      screen: Login,
-      navigationOptions: {
-        header: null,
-        headerLeft: null
-      }
-    },
-    Registration: {
-      screen: Signup,
-      navigationOptions: {
-        header: null,
-        headerLeft: null
-      }
-    }
+    Splash,
+    Login,
+    Signup,
+    GStarted,
+    Stack
   },
   {
-    initialRouteName: "Registration"
+    initialRouteName: "Splash"
   }
 );
 
 // App
-const App = () => <AppStack />;
-
 export default App;

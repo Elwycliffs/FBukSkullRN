@@ -6,14 +6,29 @@ import {
   Image,
   StyleSheet,
   Button,
-  Platform
+  Platform,
+  Alert,
+  TouchableOpacity
 } from "react-native";
-import FireBase from "./auth/FireBase";
+import propTypes from "prop-types";
+import Firebase from "firebase";
+import fireConfigs from "./auth/firebase.config";
+import Separator from "./components/Separator";
 
 // Style
 const backColor = "#3a5998";
 const foreColor = "white";
 const linkColor = "white";
+const flex = 1;
+const flexD = "column";
+const center = "center";
+const logoD = 40;
+const logoMar = 120;
+const rlMar = 10;
+const tbMar = 10;
+const inputH = 80;
+const inputR = 4;
+
 const styles = StyleSheet.create({
   view: {
     flexDirection: "column",
@@ -29,36 +44,45 @@ const styles = StyleSheet.create({
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { error: "", email: "", password: "" };
   }
 
-  auth() {
-    // Extends firebase object
+  static propTypes = {
+    navigation: propTypes.shape({
+      navigate: propTypes.func.isRequired
+    }).isRequired
+  };
+
+  Login() {
+    const { email, password, error } = this.state;
+    console.log("--: Authenticating Member");
+
+    if (password.length >= 6) {
+      console.log("--: Policy Matched");
+      if (!Firebase.app.length) {
+        Firebase.initializeApp(fireConfigs);
+      }
+      try {
+        Firebase.auth()
+          .signInWithEmailAndPassword(email.trim(), password)
+          .then(() => this.props.navigation.navigate("Landing"))
+          .catch(() => {
+            Alert.alert("Incorrect Credentials!!");
+          });
+      } catch (error) {
+        console.log(error.toString());
+      }
+    } else {
+      console.log("--: Policy Violated");
+      Alert.alert("Incorrect Credentials");
+    }
   }
 
   render() {
-    let flex = 1;
-    let flexD = "column";
-    let center = "center";
-    let logoD = 40;
-    let logoMar = 120;
-    let rlMar = 10;
-    let tbMar = 10;
-    let bColor = "lightgray";
-    let inputH = 80;
-    let inputR = 4;
-    let bWidth = 0.5;
-
     return (
       <View style={styles.view}>
-        <View
-          style={{
-            flex: flex,
-            flexDirection: flexD,
-            alignItems: center
-          }}
-        >
-          {/** Logo container */}
+        {/** Logo container */}
+        <View style={{ flex: 1, alignItems: "center" }}>
           <Image
             source={require("../assets/Logo.png")}
             style={{
@@ -68,74 +92,79 @@ class Login extends Component {
             }}
           />
         </View>
+
+        {/** TextInput container */}
         <View
           style={{
-            flex: flex,
-            flexDirection: flexD,
-            justifyContent: center,
-            //alignItems: {center},
-            marginLeft: rlMar,
-            marginRight: tbMar
+            flex: 2,
+            flexDirection: "column",
+            justifyContent: "center",
+            padding: 20
           }}
         >
-          {/** TextInput container */}
           <View
             style={{
-              flexDirection: flexD,
-              backgroundColor: foreColor,
-              marginBottom: tbMar,
-              height: inputH,
-              borderRadius: inputR
+              flexDirection: "column",
+              backgroundColor: "white",
+              borderRadius: 3,
+              marginBottom: 10
             }}
           >
             <TextInput
-              style={{
-                flex: flex,
-                flexDirection: flexD,
-                marginRight: rlMar,
-                marginLeft: rlMar
-              }}
-              //caretHidden
-              underlineColorAndroid="transparent"
-              textContentType="emailAddress"
-              placeholder="Email address or phone number"
+              placeholder="Email or phone number"
               placeholderTextColor="lightgray"
-            />
-            <View
-              style={{
-                borderBottomColor: bColor,
-                borderBottomWidth: bWidth
-              }}
-            />
-            <TextInput
-              style={{ flex: flex, marginLeft: rlMar, marginRight: rlMar }}
-              //caretHidden
               underlineColorAndroid="transparent"
-              textContentType="password"
-              secureTextEntry
+              onChangeText={text => this.setState({ email: text })}
+              ref={input => {
+                this.textInput = input;
+              }}
+              value={this.state.username}
+              style={{ flexDirection: "row", padding: 10 }}
+            />
+            <Separator />
+            <TextInput
               placeholder="Password"
               placeholderTextColor="lightgray"
+              underlineColorAndroid="transparent"
+              onChangeText={text => this.setState({ password: text })}
+              ref={input => {
+                this.textInput = input;
+              }}
+              value={this.state.username}
+              secureTextEntry
+              style={{ flexDirection: "row", padding: 10 }}
             />
           </View>
           <Button
             title="Login"
             color={Platform.OS == "android" ? "#4e69a2" : "white"}
+            style={{ height: 30 }}
             onPress={() => {
-              console.log("Auth");
+              this.Login();
             }}
           />
         </View>
         <View
           style={{
-            flex: flex,
+            flex: 1,
             flexDirection: flexD,
             justifyContent: center,
             alignItems: center
           }}
         >
           {/** Useful Links container */}
-          <Text style={[styles.links]}>Sign up for Facebook</Text>
-          <Text style={[styles.links, { marginTop: 20 }]}>Need help?</Text>
+          <View>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate("GStarted");
+              }}
+            >
+              <Text style={[styles.links]}>Sign up on Facebook</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <Text style={[styles.links, { marginTop: 20 }]}>Need help?</Text>
+          </View>
         </View>
       </View>
     );

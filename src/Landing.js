@@ -5,13 +5,6 @@ import Notifications from "./main/Notifications";
 import Media from "./main/Media";
 import Profile from "./main/Profile";
 import Groups from "./main/Groups";
-//import Settings from "./main/Settings";
-
-// Themes and Colors
-//const background = "#fff";
-
-// Defaults
-const iconPadding = 20;
 
 // Styles
 /*const styles = StyleSheet.create({
