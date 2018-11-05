@@ -3,7 +3,6 @@ import { createStackNavigator } from "react-navigation";
 import Landing from "./Landing";
 import { View, TouchableOpacity, Platform } from "react-native";
 import { Icon } from "native-base";
-import { SearchBar } from "react-native-elements";
 
 const stack = createStackNavigator(
   {
