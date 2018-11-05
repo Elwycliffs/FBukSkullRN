@@ -67,14 +67,14 @@ class Login extends Component {
           .signInWithEmailAndPassword(email.trim(), password)
           .then(() => this.props.navigation.navigate("Landing"))
           .catch(() => {
-            Alert.alert("Incorrect Credentials!!");
+            Alert.alert("Invalid Credentials!!");
           });
       } catch (error) {
         console.log(error.toString());
       }
     } else {
       console.log("--: Policy Violated");
-      Alert.alert("Incorrect Credentials");
+      Alert.alert("Invalid Credentials");
     }
   }
 

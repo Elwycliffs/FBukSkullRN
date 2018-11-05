@@ -5,16 +5,9 @@ import Notifications from "./main/Notifications";
 import Media from "./main/Media";
 import Profile from "./main/Profile";
 import Groups from "./main/Groups";
-
-// Styles
-/*const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: background,
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});*/
+import propTypes from "prop-types";
+import FireBase from "firebase";
+import fireConfigs from "./auth/firebase.config";
 
 const AppTabNav = createMaterialTopTabNavigator(
   {
@@ -45,11 +38,30 @@ const AppTabNav = createMaterialTopTabNavigator(
 class MainScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { userName: "", email: "", avatar: "" };
+  }
+
+  static propTypes = {
+    navigation: propTypes.shape({
+      navigate: propTypes.func.isRequired
+    }).isRequired
+  };
+
+  getInfo() {
+    if (!FireBase.app.length) {
+      FireBase.initializeApp(fireConfigs);
+    }
+
+    this.setState({ userName: FireBase.auth().currentUser.displayName });
+    this.setState({ email: FireBase.auth().currentUser.email });
+    this.setState({ avatar: FireBase.auth().currentUser.photoURL });
   }
 
   render() {
-    return <AppTabNav />;
+    let username = this.state.userName;
+    let email = this.state.email;
+    let avatar = this.state.avatar;
+    return <AppTabNav userName={username} email={email} avatar={avatar} />;
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Image, ActivityIndicator, StyleSheet } from "react-native";
-import * as fireBase from "firebase";
+import fireBase from "firebase";
 import fireConfigs from "./auth/firebase.config";
 import propTypes from "prop-types";
 

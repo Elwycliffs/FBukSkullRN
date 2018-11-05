@@ -1,6 +1,12 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { isThisISOWeek } from "date-fns";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Platform,
+  Button
+} from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -16,18 +22,26 @@ export default class GStarted extends Component {
     super(props);
     this.state = {
       interests: [
-        { name: "Walking", selected: false },
-        { name: "Walking", selected: false },
-        { name: "Walking", selected: false },
-        { name: "Walking", selected: false },
-        { name: "Walking", selected: false },
-        { name: "Walking", selected: false },
-        { name: "Walking", selected: false },
-        { name: "Walking", selected: true },
-        { name: "Walking", selected: false },
-        { name: "Walking", selected: false }
+        { name: "Skating", selected: false },
+        { name: "Swimming", selected: false },
+        { name: "Aerobics", selected: false },
+        { name: "Movies", selected: false },
+        { name: "Books", selected: false },
+        { name: "Athletics", selected: false },
+        { name: "Dancing", selected: false },
+        { name: "Orchestra", selected: false },
+        { name: "Sumo", selected: false },
+        { name: "Wrestling", selected: false },
+        { name: "MMA", selected: false },
+        { name: "Bowling", selected: false },
+        { name: "Surfing", selected: false },
+        { name: "Snow-Boarding", selected: false },
+        { name: "Cycling", selected: false },
+        { name: "Racing", selected: false }
       ]
     };
+
+    this.interestList = [];
   }
 
   render() {
@@ -66,6 +80,10 @@ export default class GStarted extends Component {
                     ? false
                     : true;
                   this.setState({ interests: stat });
+                  let action = this.state.interests[key].selected
+                    ? this.interestList.push(props.name)
+                    : this.interestList.pop(props.name);
+                  //return action;
                 }}
               >
                 <View
@@ -91,6 +109,62 @@ export default class GStarted extends Component {
               </TouchableOpacity>
             );
           })}
+        </View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: 10,
+            paddingTop: 50
+          }}
+        >
+          <View
+            style={{
+              height: 30,
+              width: 90,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate("Login");
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  fontWeight: "600",
+                  fontSize: 18
+                }}
+              >
+                Back
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              height: 30,
+              width: 90,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                let interests = this.interestList;
+                this.props.navigation.navigate("Signup", {
+                  interestList: interests
+                });
+              }}
+            >
+              <Text style={{ color: "white", fontWeight: "600", fontSize: 18 }}>
+                Next
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );

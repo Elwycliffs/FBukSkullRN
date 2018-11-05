@@ -17,7 +17,6 @@ import propTypes from "prop-types";
 
 // Style
 const backColor = "#3a5998";
-const foreColor = "white";
 const linkColor = "white";
 const styles = StyleSheet.create({
   view: {
@@ -41,6 +40,16 @@ class Signup extends Component {
       password: "",
       conPassword: ""
     };
+
+    this.interests = [];
+  }
+
+  componentDidMount() {
+    const interests = this.props.navigation.state.params.interestList;
+
+    for (let i = 0; i < interests.length; i++) {
+      this.interests.push(interests[i]);
+    }
   }
 
   static propTypes = {
@@ -49,10 +58,34 @@ class Signup extends Component {
     }).isRequired
   };
 
-  register() {
-    const { email, password, conPassword } = this.state;
+  writeData() {
+    let email = this.state.email;
+    let username = this.state.username;
+    let interests = this.interests;
 
-    if (password.length && password === conPassword) {
+    Firebase.database()
+      .ref()
+      .set({
+        email,
+        username,
+        interests
+      })
+      .then(data => {
+        // Successful Callback
+        return console.log("data: ", data);
+      })
+      .catch(error => {
+        // error callback
+        return console.log("error ", error);
+      });
+  }
+
+  register() {
+    const { username, email, password, conPassword } = this.state;
+
+    console.log(username.length);
+
+    if (username.length && password.length && password === conPassword) {
       if (!Firebase.app.length) {
         Firebase.initializeApp(fireConfigs);
       }
@@ -60,16 +93,22 @@ class Signup extends Component {
         Firebase.auth()
           .createUserWithEmailAndPassword(email.trim(), password)
           .then(() => {
-            this.props.navigation.navigate("GStarted");
+            Firebase.auth().currentUser.updateProfile({
+              displayName: username,
+              photoURL:
+                "https://png2.kisspng.com/20180404/use/kisspng-social-media-computer-icons-snapchat-snapchat-5ac4e124204289.5886788015228521321321.png"
+            });
+            this.writeData();
+            this.props.navigation.navigate("Landing", { username, email });
           })
           .catch(() => {
-            Alert.alert("Incorrect Credentials");
+            Alert.alert("Invalid Credentials");
           });
       } catch (error) {
         console.log(error.toString());
       }
     } else {
-      Alert.alert("Incorrect Credentials");
+      Alert.alert("Invalid Credentials");
     }
   }
 

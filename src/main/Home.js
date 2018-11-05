@@ -2,6 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Icon, Container, Content } from "native-base";
 import Card from "./objs/Post";
+import propTypes from "prop-types";
+import Firebase from "firebase";
+import fireConfigs from "../auth/firebase.config";
 
 // Themes and Colors
 const background = "#fff";
@@ -22,6 +25,12 @@ class Home extends React.Component {
     super(props);
     this.state = {};
   }
+
+  static propTypes = {
+    navigation: propTypes.shape({
+      navigate: propTypes.func.isRequired
+    }).isRequired
+  };
 
   static navigationOptions = {
     tabBarIcon: ({ tintcolor }) => (
