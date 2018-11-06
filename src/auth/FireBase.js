@@ -3,7 +3,7 @@ import * as Firebase from "firebase";
 //Initialize Firebase API
 
 const firebaseConfig = {
-  apiKey: "AlzaSyDJGITjvZpBtiNrn)h16er7RJnhZemVWWE",
+  apiKey: "",
   authDomain: "",
   databaseURL: "",
   storageBucket: ""
